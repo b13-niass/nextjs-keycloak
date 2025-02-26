@@ -22,14 +22,13 @@ export async function POST(req: NextRequest) {
                     body: new URLSearchParams(realm_params),
                 }
             );
-            const { access_token, refresh_token } = await response.json();
-            console.log(access_token, refresh_token);
+            const data = await response.json();
             if (response.ok) {
                 return NextResponse.json(
                     {
                         success: true,
                         message: 'Login successful',
-                        data: { access_token, refresh_token }
+                        data: data
                     },
                     { status: 200 }
                 );
